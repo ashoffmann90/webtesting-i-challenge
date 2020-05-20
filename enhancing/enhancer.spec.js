@@ -17,7 +17,7 @@ describe('enhancer', () => {
     describe('succeed enhancement', () => {
         it('add 1 enhance if enhance < 20', () => {
             expect(succeed({...item, enhancement: 10}))
-            .toEqual({...item, enhancement: ++item.enhancement })
+            .toStrictEqual({...item, enhancement: ++item.enhancement })
         })
     })
 
@@ -31,11 +31,14 @@ describe('enhancer', () => {
             .toEqual({...item, durability: item.durability - 10, enhancement: 15})
         })
         it('enhance - 1 if enhance > 16', () => {
-            expect(fail({...item, durability: 50, enhancement: 18}))
-            .toBe({...item, durability: item.durability - 10, enhancement: --item.enhancement})
+            expect(fail({
+                ...item, 
+                durability: 50, 
+                enhancement: 17}))
+            .toEqual({
+                ...item, 
+                durability: 40, 
+                enhancement: 17})
         })
     })
 })
-
-
-it.todo('fail')
