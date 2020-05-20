@@ -12,14 +12,17 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return item.enhancement < 15 ? {...item, durability: item.durability - 5}
-  : item.enhancement > 14 ? { ...item, durability: item.durability - 10 }
-  : item.enhancement > 16 ? { ...item, enhancement: item.enhancement - 1}
+  return item.enhancement < 15 
+  ? {...item, durability: item.durability - 5}
+  : item.enhancement > 14 
+  ? { ...item, durability: item.durability - 10 }
+  : item.enhancement > 16 
+  ? { ...item, durability: item.durability - 10, enhancement: --item.enhancement}
   : { ...item}
 }
 
 function repair(item) {
-  return { ...item, durability: item.durability === 100 };
+  return { ...item, durability: 100 };
 }
 
 function get(item) {
